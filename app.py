@@ -24,6 +24,16 @@ class HeruLang:
     def is_subjunctive_verb(self, word):
         return self.is_verb(word) and word[0] in HeruLang.BAR_LETTERS
 
+    @staticmethod
+    def _herulang_sort(self, word):
+        """Generates sorting key for words on herulang alphabet."""
+        return [HeruLang.ALPHABET.index(l) for l in word]
+
+    def analyze(self, full_text):
+        wordlist = full_text.split(" ")
+        ## TODO: remove dupes
+        sort_words = sorted(wordlist, key=self._herulang_sort)
+        return
 
 
 @app.route('/')

@@ -1,19 +1,40 @@
+from random import choice
+
 from unittest import TestCase
 from herucode import HeruLang
+
+
+def make_random_verb():
+    b = HeruLang.BAR_LETTERS
+    x = HeruLang.ALPHABET
+    li = [choice(x), choice(x), choice(x), choice(x), choice(x), choice(b)]
+
+    return " ".join(li)
+
+
+def make_random_subjunctive_verb():
+    b = HeruLang.BAR_LETTERS
+    x = HeruLang.ALPHABET
+    li = [choice(b), choice(x), choice(x), choice(x), choice(x), choice(b)]
+
+    return " ".join(li)
+
 
 class TestHeruLangInner(TestCase):
 
     def setUp(self) -> None:
         self.HL = HeruLang
 
-    def test_is_preposition(self):
-        self.assertTrue(True)
-
     def test_is_verb(self):
         self.assertTrue(self.HL.is_verb("iygsee"))
 
-    def test_is_subjunctive_verb(self):
-        self.assertTrue(True)
+    def test_are_verbz(self):
+        for i in range(100):
+            self.assertTrue(self.HL.is_verb(make_random_verb()))
+
+    def test_are_subjunctive_verbs(self):
+        for i in range(100):
+            self.assertTrue(self.HL.is_subjunctive_verb(make_random_subjunctive_verb()))
 
     def test_as_number(self):
         self.assertEqual(self.HL.as_number(word="gxjrc"), 605637)

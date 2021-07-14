@@ -1,9 +1,13 @@
 import math
 
+
 class HeruLang:
-    ALPHABET = list("sxocqnmwpfyheljrdgui")
+    ALPHABET = list("sxocqnmwpfyheljrdgui")  # The order of the alphabet letters is important.
     FOO_LETTERS = ["u", "d", "x", "s", "m", "p", "f"]
-    BAR_LETTERS = list(set(ALPHABET) - set(FOO_LETTERS))  # List instead of set just for consistency.
+    BAR_LETTERS = list(set(ALPHABET) - set(FOO_LETTERS))  # List instead of set for consistency.
+
+    def __init__(self, word_list):
+        pass
 
     @staticmethod
     def is_preposition(self, word):
@@ -13,7 +17,7 @@ class HeruLang:
 
     @staticmethod
     def is_verb(self, word):
-        return (len(word) >= 6) and (word[-1] in HeruLang.BAR_LETTERS)
+        return len(word) >= 6 and word[-1] in HeruLang.BAR_LETTERS
 
     @staticmethod
     def is_subjunctive_verb(self, word):

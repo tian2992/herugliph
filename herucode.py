@@ -46,6 +46,9 @@ class HeruLang:
 
     def analyze(self, full_text):
         full_wordlist = full_text.split()
+        if len(full_wordlist) < 1:
+            # Empty wordlist
+            return {}
         recounted = Counter(full_wordlist)
         wordlist = list(recounted.keys())
         sort_words = sorted(wordlist, key=self._herulang_sort)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -16,7 +16,7 @@ def hello_world():
 def parse_heru_post_arg():
     word_list = request.values.get('text', "")
     hl = HeruLang()
-    return hl.analyze(word_list)
+    return jsonify(hl.analyze(word_list))
 
 
 @app.route('/parse', methods=['POST'])
@@ -26,7 +26,7 @@ def parse_heru_post_json():
     else:
         words = ""
     hl = HeruLang()
-    return hl.analyze(words)
+    return jsonify(hl.analyze(words))
 
 
 if __name__ == '__main__':

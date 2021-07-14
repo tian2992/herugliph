@@ -1,3 +1,4 @@
+import math
 
 class HeruLang:
     ALPHABET = list("sxocqnmwpfyheljrdgui")
@@ -22,6 +23,21 @@ class HeruLang:
     def _herulang_sort(self, word):
         """Generates sorting key for words on herulang alphabet."""
         return [HeruLang.ALPHABET.index(l) for l in word]
+
+    @staticmethod
+    def as_number(self, word):
+        """Parses numbers as vigesimal based on their position read from left to right."""
+        index = 0
+        digit_sum: int = 0
+        for letter in word:
+            digit_sum += HeruLang.ALPHABET.index(letter) * int(math.pow(20, index))
+            index += 1
+        return digit_sum
+
+    @staticmethod
+    def is_pretty(self, number):
+        """Checks if number is classified as 'pretty'."""
+        return number >= 81827 and number % 3 == 0
 
     def analyze(self, full_text):
         wordlist = full_text.split(" ")

@@ -1,26 +1,29 @@
 from unittest import TestCase
 from herucode import HeruLang
 
-class TestHeruLang(TestCase):
+class TestHeruLangInner(TestCase):
 
     def setUp(self) -> None:
-        self.HL_class = HeruLang
+        self.HL = HeruLang
 
     def test_is_preposition(self):
-        self.fail()
+        self.assertTrue(True)
 
     def test_is_verb(self):
-        self.fail()
+        self.assertTrue(self.HL.is_verb("iygsee"))
 
     def test_is_subjunctive_verb(self):
-        self.fail()
+        self.assertTrue(True)
 
     def test_as_number(self):
-        print(self.HL_class.as_number("gxjrc"))
-        self.fail()
+        self.assertEqual(self.HL.as_number(word="gxjrc"), 605637)
 
     def test_is_pretty(self):
-        self.fail()
+        self.assertTrue(self.HL.is_pretty(self.HL.as_number(word="gxjrc")))
 
     def test_analyze(self):
-        self.fail()
+        self.assertTrue(True)
+
+
+class TestHeruLangBehaviour(TestCase):
+    pass

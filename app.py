@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -13,10 +13,9 @@ def hello_world():
 
 @app.route('/parse_post', methods=['POST'])
 def parse_heru_post_arg():
-    words = []  # TODO: load words as post arg value
-    hl = HeruLang(words)
-    return {}
-
+    word_list = request.values['text']
+    hl = HeruLang()
+    return hl.analyze(word_list)
 
 @app.route('/parse', methods=['POST'])
 def parse_heru_post_json():

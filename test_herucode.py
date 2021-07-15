@@ -43,7 +43,6 @@ class TestHeruLangInner(TestCase):
         self.assertTrue(self.HL.is_pretty(self.HL.as_number(word="gxjrc")))
 
 
-
 class TestHeruLangBehaviour(TestCase):
 
     def test_analyze_1(self):

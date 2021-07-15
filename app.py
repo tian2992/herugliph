@@ -9,7 +9,7 @@ from herucode import HeruLang
 
 @app.route('/')
 def hello_world():
-    return ""
+    return {"endpoints":["/parse_post", "/parse"]}
 
 
 @app.route('/parse_post', methods=['POST'])

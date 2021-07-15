@@ -9,11 +9,12 @@ from herucode import HeruLang
 
 @app.route('/')
 def hello_world():
-    return """Endpoint for Herucode Parser"""
+    return ""
 
 
 @app.route('/parse_post', methods=['POST'])
 def parse_heru_post_arg():
+    app.logger.info("Parsing post argument")
     word_list = request.values.get('text', "")
     hl = HeruLang()
     return jsonify(hl.analyze(word_list))
@@ -21,16 +22,23 @@ def parse_heru_post_arg():
 
 @app.route('/parse', methods=['POST'])
 def parse_heru_post_json():
+    app.logger.info("Parsing as json argument")
     if request.is_json:
-        words = request.json['text']
+        try:
+            words = request.json['text']
+        except KeyError:
+            app.logger.error("No text value on JSON")
+            return {}
     else:
+        app.logger.error("Invalid JSON value posted")
         words = ""
     hl = HeruLang()
     return jsonify(hl.analyze(words))
 
 
 if __name__ == '__main__':
-    app.run()
+    import os
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
 
 if __name__ != '__main__':
     gunicorn_logger = logging.getLogger('gunicorn.error')
